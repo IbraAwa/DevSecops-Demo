@@ -1,27 +1,50 @@
-﻿
-1 )Cloner mon projet
-2) changer la connection string du publish et dans nos variable connection stirng
-3) utilisé les bonne pratique au niveau de connection string (demander conseille à l'ia)
+﻿# Consignes du projet
 
+## 1. Cloner le projet
+- Cloner le projet afin de travailler sur une copie locale.
 
-4) pour chaque exercies dans le dossier Exercices vous allez crée
+## 2. Configurer les chaînes de connexion
+- Modifier la chaîne de connexion utilisée lors de la publication (*Publish*).
+- Modifier également les variables d'environnement contenant les chaînes de connexion.
+- Respecter les bonnes pratiques concernant la gestion des chaînes de connexion.
+- Demander conseil à une IA afin de vérifier que la configuration respecte les bonnes pratiques en matière de sécurité.
 
-// Fichier : avec un nom (comporte le nom de l'exerice)
-// Crée une connection
-// ouvrir une connection
-// crée une commande
-// insérer une requête sql dans command.commandText
-// et dans al console avec writeLine()
-// je veux : afficher la requete sql et son résultat
-// je veux que chaque méthode soit async et qu'il soit propre 
-//(tryParse, nom de variable correct)
+## 3. Réaliser les exercices
 
-5) les exercices sont les suivant :
+Pour chaque exercice présent dans le dossier `Exercices`, vous devez créer une classe dédiée.
 
-Calculer le prix moyen des voitures
-Afficher la marque de la voiture avec l'id 5
-Afficher le proprietaire avec l'id 2
-Afficher le proprietaire de la voiture avec l'id 14
+### Structure attendue
 
-ATENTION caque exercie une class static avec ça methode static
+Pour chaque exercice :
 
+1. Créer un fichier portant un nom explicite qui reprend le nom de l'exercice.
+2. Créer une connexion à la base de données.
+3. Ouvrir la connexion.
+4. Créer une commande SQL.
+5. Insérer la requête SQL dans la propriété `command.CommandText`.
+6. Afficher dans la console, à l'aide de `Console.WriteLine()` :
+   - La requête SQL exécutée.
+   - Le résultat obtenu à partir de cette requête.
+
+### Bonnes pratiques de développement
+
+- Toutes les méthodes doivent être asynchrones (`async`).
+- Utiliser `tryParse` lorsque cela est pertinent pour convertir des valeurs.
+- Choisir des noms de variables explicites et cohérents.
+- Respecter les bonnes pratiques de programmation.
+- Organiser le code proprement et éviter les répétitions inutiles.
+
+## 4. Liste des exercices à réaliser
+
+Vous devez réaliser les quatre exercices suivants :
+
+1. **Calculer le prix moyen des voitures.**
+2. **Afficher la marque de la voiture ayant l'identifiant 5.**
+3. **Afficher le propriétaire ayant l'identifiant 2.**
+4. **Afficher le propriétaire de la voiture ayant l'identifiant 14.**
+
+## 5. Consigne importante concernant les classes
+
+**Attention : chaque exercice doit être réalisé dans une classe `static` distincte, contenant une méthode `static` dédiée.**
+
+Chaque exercice doit donc être indépendant des autres et respecter cette organisation.

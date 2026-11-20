@@ -361,3 +361,35 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# ==========================================================
+# Ajouts spécifiques au projet
+# ==========================================================
+
+# Configuration personnelle Claude Code / MCP (propre à chaque machine)
+.claude/
+.mcp.json
+CLAUDE.local.md
+
+# Secrets et chaînes de connexion locales (ne JAMAIS commit)
+.env
+.env.*
+!.env.example
+appsettings.*.local.json
+appsettings.Local.json
+secrets.json
+*.pfx
+*.key
+
+# Profils de publication SSDT contenant des chaînes de connexion perso
+*.local.publish.xml
+
+# Autres éditeurs
+.vscode/
+.idea/
+*.sln.iml
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+desktop.ini

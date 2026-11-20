@@ -8,25 +8,26 @@ public static class CompterVoitures
     {
         string connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=DevSecops-Demo;Integrated Security=True;Trust Server Certificate=True;";
 
-        // using sans accoldade ouvrante et fermante
-        // se ferme à la fin du bloc de code ou il est
-        // Si il est dans un if il se ferme à la fin du if
-        // si dans une méthode i lse ferme a la fin de la méthode
+        // using sans accolade ouvrante et fermante
+        // se ferme à la fin du bloc de code où il est
+        // S'il est dans un if il se ferme à la fin du if
+        // si dans une méthode il se ferme à la fin de la méthode
         await using SqlConnection connection = new SqlConnection(connectionString);
         await connection.OpenAsync();
 
         await using SqlCommand command = connection.CreateCommand();
         command.CommandText = "SELECT COUNT(*) FROM Voiture";
 
-        Console.WriteLine("Request SQL :");
+        Console.WriteLine("Requête SQL :");
         Console.WriteLine(command.CommandText);
         Console.WriteLine();
 
         object? resultat = await command.ExecuteScalarAsync();
-        int nombreVoiture = (int)resultat!; // ! => dire a C# je gère le nulle ne me donne pas d'avertissement*
+        // COUNT(*) renvoie un int côté SQL donc on peut caster directement en int
+        int nombreVoiture = (int)resultat!; // ! => dire à C# je gère le null, ne me donne pas d'avertissement
 
         Console.WriteLine($"type reçu :  {resultat.GetType().Name}");
-        Console.WriteLine($"Nombre de voiture : {nombreVoiture}");
+        Console.WriteLine($"Nombre de voitures : {nombreVoiture}");
 
 
     }

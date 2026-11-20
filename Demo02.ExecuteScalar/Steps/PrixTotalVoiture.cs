@@ -16,12 +16,14 @@ public static class PrixTotalVoiture
 
         if(resultat is not null)
         {
+            // TryParse essaie de convertir : renvoie true si ça marche
+            // et met la valeur convertie dans la variable du out
             bool estconverti = decimal.TryParse(resultat.ToString(), out decimal SommeTotalPrixVoiture);
 
             if(estconverti)
             {
-                Console.WriteLine("Conversion réussi");
-                Console.WriteLine($"La somme total du prix des voiture est de : {SommeTotalPrixVoiture}");
+                Console.WriteLine("Conversion réussie");
+                Console.WriteLine($"La somme totale du prix des voitures est de : {SommeTotalPrixVoiture}");
             } else
             {
                 Console.WriteLine("Erreur de conversion");

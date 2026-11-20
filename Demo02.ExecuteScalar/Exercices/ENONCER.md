@@ -29,7 +29,7 @@ Pour chaque exercice :
 ### Bonnes pratiques de développement
 
 - Toutes les méthodes doivent être asynchrones (`async`).
-- Utiliser `tryParse` lorsque cela est pertinent pour convertir des valeurs.
+- Utiliser `TryParse` lorsque cela est pertinent pour convertir des valeurs.
 - Choisir des noms de variables explicites et cohérents.
 - Respecter les bonnes pratiques de programmation.
 - Organiser le code proprement et éviter les répétitions inutiles.

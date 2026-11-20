@@ -1,12 +1,12 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Domain.Shared;
+using Microsoft.Data.SqlClient;
 namespace Demo02.ExecuteScalar.Steps;
 
 public static class PrixTotalVoiture
 {
     public static async Task ExecuteAsync()
     {
-        string connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=DevSecops-Demo;Integrated Security=True;Trust Server Certificate=True;";
-        await using SqlConnection connection = new SqlConnection(connectionString);
+        await using SqlConnection connection = new SqlConnection(ConnectionString.Value);
         await connection.OpenAsync();
 
         await using SqlCommand command = connection.CreateCommand();

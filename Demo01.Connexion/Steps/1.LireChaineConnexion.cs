@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Domain.Shared;
+using Microsoft.Data.SqlClient;
 
 namespace Demo01.Connexion.Steps;
 
@@ -39,7 +40,7 @@ public static class LireChaineConnexion
         // SqlConnectionStringBuilder découpe la chaîne de connexion
         // et transforme chaque "clé=valeur" en propriété C#
         // => plus besoin de lire la string à la main
-        SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(connectionString);
+        SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(ConnectionString.Value);
 
         Console.WriteLine($"Serveur : {builder.DataSource}");
         Console.WriteLine($"Base de données : {builder.InitialCatalog}"); // Database= devient InitialCatalog

@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Domain.Shared;
+using Microsoft.Data.SqlClient;
 
 namespace Demo02.ExecuteScalar.Steps;
 
@@ -6,13 +7,11 @@ public static class CompterVoitures
 {
     public static async Task ExecuteAsync()
     {
-        string connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=DevSecops-Demo;Integrated Security=True;Trust Server Certificate=True;";
-
         // using sans accolade ouvrante et fermante
         // se ferme à la fin du bloc de code où il est
         // S'il est dans un if il se ferme à la fin du if
         // si dans une méthode il se ferme à la fin de la méthode
-        await using SqlConnection connection = new SqlConnection(connectionString);
+        await using SqlConnection connection = new SqlConnection(ConnectionString.Value);
         await connection.OpenAsync();
 
         await using SqlCommand command = connection.CreateCommand();

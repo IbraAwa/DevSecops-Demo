@@ -5,4 +5,5 @@
     <Build />
     <Deploy />
   </Project>
+  <Project Path="Domain.Shared/Domain.Shared.csproj" Id="df54dc72-1159-4e02-b0fb-de3f10ea78e5" />
 </Solution>

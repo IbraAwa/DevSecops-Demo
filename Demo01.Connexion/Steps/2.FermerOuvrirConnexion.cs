@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Domain.Shared;
+using Microsoft.Data.SqlClient;
 
 namespace Demo01.Connexion.Steps
 {
@@ -11,8 +12,7 @@ namespace Demo01.Connexion.Steps
             Console.WriteLine("Ouvrir fermer la connexion");
             Console.WriteLine();
 
-            string connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=DevSecops-Demo;Integrated Security=True;Trust Server Certificate=True;";
-            SqlConnection connection = new SqlConnection(connectionString);
+            SqlConnection connection = new SqlConnection(ConnectionString.Value);
             Console.WriteLine($"Connection State : {connection.State}");
 
             // await permet au cuisinier de partir faire autre chose et de revenir quand c'est terminé

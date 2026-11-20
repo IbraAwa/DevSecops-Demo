@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Domain.Shared;
+using Microsoft.Data.SqlClient;
 
 namespace Demo01.Connexion.Steps;
 
@@ -13,12 +14,10 @@ public static class FermerUsing
         // regarder son state APRÈS le using
         SqlConnection referenceGarder;
 
-        // un très beau magic string en espérant ne pas changer ma connectionString un jour
-        string connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=DevSecops-Demo;Integrated Security=True;Trust Server Certificate=True;";
-
+  
         // Je crée un sqlConnection dans la parenthèse qui vivra seulement entre les
         // deux accolades {}
-        await using (SqlConnection connection = new SqlConnection(connectionString))
+        await using (SqlConnection connection = new SqlConnection(ConnectionString.Value))
         {
             // pas besoin de DisposeAsync() car mon using le fait tout seul
             await connection.OpenAsync();

@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Domain.Shared;
+using Microsoft.Data.SqlClient;
 namespace Demo01.Connexion.Steps;
 
 public static class CreerCommande
@@ -6,8 +7,7 @@ public static class CreerCommande
     public static async Task ExecuteAsync()
     {
         Console.WriteLine();
-        string connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=DevSecops-Demo;Integrated Security=True;Trust Server Certificate=True;";
-        await using (SqlConnection connection = new SqlConnection(connectionString))
+        await using (SqlConnection connection = new SqlConnection(ConnectionString.Value))
         {
             await connection.OpenAsync();
 

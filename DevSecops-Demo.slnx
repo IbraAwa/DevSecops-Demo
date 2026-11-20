@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="DevSecops-Demo/DevSecops-Demo.sqlproj" Id="f66e612b-cdee-4f74-bce9-a6c64d1f6607">
+    <Build />
+    <Deploy />
+  </Project>
+</Solution>

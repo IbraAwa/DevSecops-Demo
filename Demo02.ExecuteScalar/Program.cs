@@ -50,6 +50,7 @@ int id1 = int.Parse(Console.ReadLine());
 // vous pouvez perdre l'information
 // montrer car SqlAlchemy fait ce genre de requête
 // Parfois EFCore si mal utilisé
+//..
 string? nomProprietaire1 = await GetProprietaireByVoitureId.ExecuteDoubleRequestAsync(id1);
 
 Console.WriteLine($"le proprietaire de la voiture avec l'id {id1} est {nomProprietaire1}");

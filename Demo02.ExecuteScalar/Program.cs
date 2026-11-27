@@ -13,36 +13,46 @@ await PrixMoyenVoiture.ExecuteAsync();
 
 Console.Clear();
 
-//Console.Write("Ecrire l'identifiant de la voiture pour voir sa marque : ");
-//string idChoisi = Console.ReadLine();
-
-//string? voitureMarque = await GetVoitureById.ExecuteAsync(idChoisi);
-
-//if (voitureMarque is not null)
-//{
-//    Console.WriteLine($"marque de la voiture {idChoisi} est {voitureMarque}");
-//}
-//else
-//{
-//    Console.WriteLine($"voiture avec l'id {idChoisi} introuvable");
-//}
-
-//Console.Clear();
-
-//Console.WriteLine("Trouver le nom d'un propriétaire via son identifiant ?");
+//Console.WriteLine("Quel voiture voulez-vous chercher ? taper son identifiant... ");
 //int id = int.Parse(Console.ReadLine());
 
-//string? resultat = await GetProprietaireById.ExecuteAsync(id);
+//string? message = await GetMarqueVoitureById.ExecuteAsync(id);
 
-//if(resultat is not null)
-//{
-//    Console.WriteLine(resultat);
-//}
-//else
-//{
-//    Console.WriteLine($"Proprietaire avec l'id {id} introuvable");
-//}
+//Console.WriteLine(message);
 
 
-string nom = await GetProprietaireByVoitureId.ExecuteAsync1("3");
-Console.WriteLine(nom);
+//Console.WriteLine("Quel propriétaire voulez-vous chercher ? taper son identifiant... ");
+//string id = Console.ReadLine();
+
+//string? nomProprietaire = await GetProprietaireById.ExecuteAsync(id);
+
+//Console.WriteLine($"le proprietaire avec l'id {id} est {nomProprietaire}");
+
+Console.WriteLine("Quel propriétaire voulez-vous chercher via sa voiture Id ? taper identifiant de la voiture... ");
+int id = int.Parse(Console.ReadLine());
+
+
+// SUPER OPTIMISER
+string? nomProprietaire = await GetProprietaireByVoitureId.ExecuteAsync(id);
+
+Console.WriteLine($"le proprietaire de la voiture avec l'id {id} est {nomProprietaire}");
+
+Console.WriteLine();
+Console.WriteLine("-----------------");
+
+
+Console.WriteLine("Quel propriétaire voulez-vous chercher via sa voiture Id ? taper identifiant de la voiture... ");
+int id1 = int.Parse(Console.ReadLine());
+
+// Double requête
+// double latence
+// ET si entre les deux requête un autre collègue à changer le propriétaire de la voiture
+// vous pouvez perdre l'information
+// montrer car SqlAlchemy fait ce genre de requête
+// Parfois EFCore si mal utilisé
+string? nomProprietaire1 = await GetProprietaireByVoitureId.ExecuteDoubleRequestAsync(id1);
+
+Console.WriteLine($"le proprietaire de la voiture avec l'id {id1} est {nomProprietaire1}");
+
+
+

@@ -1,7 +1,6 @@
 <Solution>
   <Project Path="Demo01.Connexion/Demo01.Connexion.csproj" Id="9496cb4b-2970-4efe-b588-9e11b2179318" />
   <Project Path="Demo02.ExecuteScalar/Demo02.ExecuteScalar.csproj" Id="eacfd8af-c0c8-43e4-bd4b-d1c6d47e9ae6" />
-  <Project Path="Demo03.RequeteParametrer/Demo03.RequeteParametrer.csproj" Id="0741e566-d8e5-4068-b009-e4e052df88db" />
   <Project Path="DevSecops-Demo/DevSecops-Demo.sqlproj" Id="f66e612b-cdee-4f74-bce9-a6c64d1f6607">
     <Build />
     <Deploy />

@@ -1,52 +1,45 @@
 ﻿using Domain.Shared;
 using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Demo02.ExecuteScalar.Exercices;
 
 internal class GetProprietaireById
 {
-    // première chose pour éviter sqlInjection
-    // utilisé le type int quand on peut
-    // ainsi aucun texte peut être introduit uniquement des nombre
-    // Mais ce n'est pas suffisant !
-    public static async Task<string?> ExecuteAsync(int id, CancellationToken cancellationToken = default)
+    // TOUJOURS CANCELLATIONTOKEN QUAND METHODE ASYNC
+    // DISCLAIMER INJECTION SQL POSSIBLE 
+    public static async Task<string?> ExecuteAsync(string id, CancellationToken cancellationToken = default)
     {
         using SqlConnection connection = new(ConnectionString.Value);
         await connection.OpenAsync();
+
         using SqlCommand command = connection.CreateCommand();
-        command.CommandText = "SELECT Nom FROM Proprietaire WHERE Id = @id";
+        // TRUE OR FALSE => TRUE
+        // FALSE OR TRUE => TRUE
+        // TRUE OR TRUE =>> TRUE
+        // Je fais exprès OR comme ça ma condition est toujours vrai
 
-        // Trois manière : 
-        // Explicite
-        // le meilleur (selon moi) 
-        command.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = id;
+        // Faire de l'interpolation de chaine de caractère en ADO ou même partout
+        // n'est pas bon
+        // Car il donne la possiblité de faire de l'injection SQL
+        // Injection SQL => Injecter du SQL non voulu par l'application
+        // Grâce à ça récupérer des info confidentiel dans la DB
 
-        // Peu recommandé mais rapide
-        // Pourquoi peu recommandé ?
-        // la méthode infère le type via quel type .net il a
-        // string converti en NVARCHAR
-        // Si colonne en VARCHAR BUG SILENCIEUX
-        // EXPLIQUER APRES EN DETAILS
+        /* 
+         SELECT Nom FROM Proprietaire WHERE Id = '' OR '1' = '1' 
+         UNION SELECT Marque FROM Voiture -- '
+         */
 
-        // même avec les decimal
-        // si DECIMAL = 3,12
-        // AdWithValue infere decimal(3,2) (3 chiffre dont un après la virugle)
-        // mais si DB de type decimal(18,2) ERREUR
-        //command.Parameters.AddWithValue("@id", id);
+        // A Cause du dollars devant votre string
+        // pour Sql {id} est du texte brute et non un paramètre à mettre après le Id =
+        command.CommandText = $"SELECT Nom FROM Proprietaire WHERE Id = '{id}'";
 
-        // Moderne mais super long
-        //command.Parameters.Add(new SqlParameter("@id", System.Data.SqlDbType.Int) { Value = id });
+        object? nomObj = await command.ExecuteScalarAsync();
 
-        object? proprietaireNomObj = await command.ExecuteScalarAsync();
-
-        return proprietaireNomObj switch
+        return nomObj switch
         {
             null or DBNull => null,
-            string proprietaireNom => proprietaireNom,
-            _ => throw new InvalidCastException($"type string attendu mais {proprietaireNomObj.GetType().Name} à la place")
+            string nom => nom,
+            _ => $"La requête à renvoyer {nomObj.GetType().Name} alors qu'on attendait un stirng"
         };
     }
 }

@@ -14,6 +14,7 @@ internal class LireView
         await connection.OpenAsync(cancellationToken);
 
         await using SqlCommand command = connection.CreateCommand();
+        // Sans view a chaque besoin écrire une grande requête chiant au bout d'un moment
         //  command.CommandText = "SELECT [Id], [Prenom], [Nom], [Email] FROM  [dbo].[Proprietaire] WHERE Actif = 1;";
         command.CommandText = "SELECT * FROM V_Proprietaire";
 
@@ -21,8 +22,8 @@ internal class LireView
 
 
         // ReadAsync lit ligne par ligne
-        // et renvoie false quand il y'a plus de ligne 
-        // donc parfait pour notre boucle while 
+        // et renvoie false quand il n'y a plus de ligne
+        // donc parfait pour notre boucle while
 
         List<Proprietaire> proprietaires = new();
         while (await reader.ReadAsync(cancellationToken))
@@ -31,10 +32,10 @@ internal class LireView
         }
 
         Console.WriteLine();
-        Console.WriteLine("Les propriétaire encore actif sont : ");
+        Console.WriteLine("Les propriétaires encore actifs sont : ");
         foreach (Proprietaire proprietaire in proprietaires)
         {
-            Console.WriteLine($"Le proprietaire numéro {proprietaire.Id}");
+            Console.WriteLine($"Le propriétaire numéro {proprietaire.Id}");
             Console.WriteLine($"Se nomme : {proprietaire.Nom} {proprietaire.Prenom}");
             Console.WriteLine($"Son email est {proprietaire.Email}");
             Console.WriteLine();

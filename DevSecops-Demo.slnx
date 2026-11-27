@@ -3,9 +3,12 @@
   <Project Path="Demo02.ExecuteScalar/Demo02.ExecuteScalar.csproj" Id="eacfd8af-c0c8-43e4-bd4b-d1c6d47e9ae6" />
   <Project Path="Demo03.RequeteParametrer/Demo03.RequeteParametrer.csproj" Id="6edafd07-16e4-459a-a91f-3d018707e6a7" />
   <Project Path="Demo04.DataReader/Demo04.DataReader.csproj" Id="ea497786-fed6-45dc-bc06-9bb8d1528d47" />
+  <Project Path="Demo05.ExecuteNonQuery/Demo05.ExecuteNonQuery.csproj" Id="d8e4a741-a0ec-458d-be8e-679ac21dc7f0" />
+  <Project Path="Demo06.AppelStoreProcedureAndTrigger/Demo06.AppelStoreProcedureAndTrigger.csproj" />
   <Project Path="DevSecops-Demo/DevSecops-Demo.sqlproj" Id="f66e612b-cdee-4f74-bce9-a6c64d1f6607">
     <Build />
     <Deploy />
   </Project>
   <Project Path="Domain.Shared/Domain.Shared.csproj" Id="df54dc72-1159-4e02-b0fb-de3f10ea78e5" />
+  <Project Path="Tools.Shared/Tools.Shared.csproj" Id="0cc39c9d-004e-4497-b899-dfcd30e33396" />
 </Solution>

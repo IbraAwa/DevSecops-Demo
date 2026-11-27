@@ -10,18 +10,18 @@ namespace Demo04.DataReader;
 
 public static class ProprietaireMapper
 {
-    // 	[Id], [Prenom], [Nom], [Email] 
+    // Colonnes renvoyées par la vue V_Proprietaire : [Id], [Prenom], [Nom], [Email]
     public static Proprietaire ViewToProprietaire(SqlDataReader reader)
     {
-        // un identifiant d'une table ne deviendra jamais null donc ternaire inutile
-        // mais mauvaise habitude (ou bonne ?)
+        // L'identifiant d'une table ne deviendra jamais null donc ternaire inutile
+        // mais mauvaise habitude (ou bonne ?) => explication dans VoitureMapper
         int id = reader["Id"] is DBNull || reader["Id"] is null ? 0 : (int)reader["Id"];
-        string prenom = reader["Prenom"] is DBNull || reader["Prenom"] is null ? "" : (string)reader["prenom"];
+        string prenom = reader["Prenom"] is DBNull || reader["Prenom"] is null ? "" : (string)reader["Prenom"];
         string nom = reader["Nom"] is DBNull || reader["Nom"] is null ? "" : (string)reader["Nom"];
         string email = reader["Email"] is DBNull || reader["Email"] is null ? "" : (string)reader["Email"];
 
-        // True directement à actif car ma view faire un where pour renvoyer uniquement
-        // les proprietaire actif
+        // true directement pour Actif car ma vue fait un WHERE pour ne renvoyer
+        // que les propriétaires actifs
         return new Proprietaire(id, prenom, nom, email, true); 
     }
 }

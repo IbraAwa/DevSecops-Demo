@@ -14,17 +14,18 @@ internal class TransformerEnObjet
         using SqlCommand command = connection.CreateCommand();
         command.CommandText = "SELECT Id, Marque, Modele, Prix FROM Voiture";
 
-        // Je crée une liste de ce que je vais récuperer dans la DB
-        // pour la stocker et pouvoir la traiter ou l'afficher corectement
+        // Je crée une liste pour stocker ce que je vais récupérer dans la DB
+        // et pouvoir le traiter ou l'afficher correctement
         List<Voiture> voitures = new();
 
         using SqlDataReader reader = await command.ExecuteReaderAsync(cancellationToken);
-        while (await reader.ReadAsync())
+        while (await reader.ReadAsync(cancellationToken))
         {
+            // Chaque ligne lue est transformée en objet Voiture grâce au mapper
             voitures.Add(VoitureMapper.VersVoiture(reader));
         }
 
-        Console.WriteLine($"Il y'a {voitures.Count} dans la table voiture");
+        Console.WriteLine($"Il y a {voitures.Count} voitures dans la table Voiture");
         foreach (Voiture voiture in voitures)
         {
             Console.WriteLine($"La voiture {voiture.Id} est");

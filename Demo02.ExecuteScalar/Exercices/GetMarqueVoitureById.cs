@@ -37,4 +37,11 @@ internal class GetMarqueVoitureById
             _ => $"la requête à renvoyer {marqueObj.GetType().Name} alors qu'on attendait un string"
         };
     }
+
+    public static Task<string?> ExecuteParameterAsync(int id, CancellationToken cancellationToken = default)
+    {
+        // Pour chaque exercice
+        // crée une nouvel méthode
+        // qui utilise le paramètrage des requête SQL
+    }
 }
